@@ -13,7 +13,7 @@ def preprocess_text(text):
 
 def predict_language(text):
     # Load the model and CountVectorizer
-    model, cv, le = load('language_detection_model.joblib')
+    naive_bayes_classifier, cv, le = load('language_detection_model.joblib')
     
     # Preprocess the text
     processed_text = preprocess_text(text)
@@ -22,7 +22,7 @@ def predict_language(text):
     transformed_text = cv.transform([processed_text])
     
     # Predict the language using the loaded model
-    predicted_language_index = model.predict(transformed_text)[0]
+    predicted_language_index = naive_bayes_classifier.predict(transformed_text)[0]
     
     # Decode the predicted language index
     predicted_language = le.inverse_transform([predicted_language_index])[0]
